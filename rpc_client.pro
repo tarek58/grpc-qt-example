@@ -8,7 +8,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 QMAKE_CXXFLAGS += -std=c++17
 
-INCLUDEPATH += $$PWD/vcpkg/include
+INCLUDEPATH += /opt/grpc-install/include/
+LIBS += -L/opt/grpc-install/lib -lgrpc++ -lgrpc -laddress_sorting -lre2 -lupb -lcares -lz -lgpr -lssl -lcrypto -labsl_raw_hash_set -labsl_hashtablez_sampler -labsl_hash -labsl_city -labsl_low_level_hash -labsl_random_distributions -labsl_random_seed_sequences -labsl_random_internal_pool_urbg -labsl_random_internal_randen -labsl_random_internal_randen_hwaes -labsl_random_internal_randen_hwaes_impl -labsl_random_internal_randen_slow -labsl_random_internal_platform -labsl_random_internal_seed_material -labsl_random_seed_gen_exception -labsl_statusor -labsl_status -labsl_cord -labsl_cordz_info -labsl_cord_internal -labsl_cordz_functions -labsl_exponential_biased -labsl_cordz_handle -labsl_bad_optional_access -labsl_str_format_internal -labsl_synchronization -labsl_graphcycles_internal -labsl_stacktrace -labsl_symbolize -labsl_debugging_internal -labsl_demangle_internal -labsl_malloc_internal -labsl_time -labsl_civil_time -labsl_strings -labsl_strings_internal -lrt -labsl_base -labsl_spinlock_wait -labsl_int128 -labsl_throw_delegate -labsl_time_zone -labsl_bad_variant_access -labsl_raw_logging_internal -labsl_log_severity -lprotobuf
 
 SRCDIR = "rpc_client_cpp"
 
@@ -20,34 +21,3 @@ SOURCES += \
 HEADERS += \
   $$SRCDIR/helloworld.grpc.pb.h \
   $$SRCDIR/helloworld.pb.h \
-
-macx {
-  debug {
-    PRE_TARGETDEPS += \
-      $$PWD/vcpkg/debug/lib/libgrpc++.a
-      $$PWD/vcpkg/debug/lib/libgrpc.a
-      $$PWD/vcpkg/debug/lib/libgpr.a
-      $$PWD/vcpkg/debug/lib/libcrypto.a
-      $$PWD/vcpkg/debug/lib/libssl.a
-      $$PWD/vcpkg/debug/lib/libz.a
-      $$PWD/vcpkg/debug/lib/libcares.a
-      $$PWD/vcpkg/debug/lib/libprotobufd.a
-
-    LIBS += -L$$PWD/vcpkg/debug/lib/ -lgrpc++ -lgrpc -lgpr -lcrypto -lssl -lz -lcares -lprotobufd
-  }
-
-  release {
-    PRE_TARGETDEPS += \
-      $$PWD/vcpkg/lib/libgrpc++.a
-      $$PWD/vcpkg/lib/libgrpc.a
-      $$PWD/vcpkg/lib/libgpr.a
-      $$PWD/vcpkg/lib/libcrypto.a
-      $$PWD/vcpkg/lib/libssl.a
-      $$PWD/vcpkg/lib/libz.a
-      $$PWD/vcpkg/lib/libcares.a
-      $$PWD/vcpkg/lib/libprotobufd.a
-
-    LIBS += -L$$PWD/vcpkg/lib/ -lgrpc++ -lgrpc -lgpr -lcrypto -lssl -lz -lcares -lprotobuf
-  }
-}
-
