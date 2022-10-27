@@ -1,6 +1,6 @@
 #include <QCoreApplication>
 
-#include "helloworld_server.h".h"
+#include "helloworld_server.h"
 
 int main(int argc, char** argv)
 {
